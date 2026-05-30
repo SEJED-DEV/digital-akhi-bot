@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changelog - Digital Akhi Bot</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .changelog-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+        .changelog-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .changelog-header p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+        .changelog-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .changelog-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(12px);
+        }
+        .changelog-item:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary-glow);
+        }
+        .changelog-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+        }
+        .changelog-version {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            background: rgba(30, 130, 76, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(30, 130, 76, 0.2);
+        }
+        .changelog-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .changelog-section {
+            margin-bottom: 1.5rem;
+        }
+        .changelog-section h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .changelog-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .changelog-section li {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+            line-height: 1.6;
+        }
+        .changelog-section li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0.25rem;
+        }
+        .changelog-section.fixes li::before {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <!-- Ambient Background Decorations -->
+    <div class="glow-blob blob-1"></div>
+    <div class="glow-blob blob-2"></div>
+
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Islamic <span>Bot</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="docs.html">Docs</a></li>
+                <li><a href="changelog.html" class="active">Changelog</a></li>
+                <li><a href="terms.html">Terms</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="changelog-header">
+            <h1>Release Changelog</h1>
+            <p>Track latest updates, premium capabilities, and development details for Digital Akhi Bot.</p>
+        </div>
+
+        <div class="changelog-timeline">
+            <!-- Changelog v1.3.0 -->
+            <div class="changelog-item">
+                <div class="changelog-meta">
+                    <span class="changelog-version">v1.3.0</span>
+                    <span class="changelog-date">May 29, 2026</span>
+                </div>
+
+                <div class="changelog-section">
+                    <h3>🚀 New Features & Enhancements</h3>
+                    <ul>
+                        <li><strong>AI Discussion Logger</strong>: Every AI interaction is now logged per guild and per user in structured <code>.jsonl</code> files under <code>logs/discussions/&lt;guildId&gt;/&lt;userId&gt;.jsonl</code>. Direct messages are stored under <code>DM/</code>.</li>
+                        <li><strong>30-Day Auto Archive</strong>: Discussion logs inactive for 30+ days are automatically compressed (gzip) and moved to <code>archives/discussions/</code> nightly — keeping storage clean while preserving full conversation history.</li>
+                        <li><strong>Redis In-Memory Fallback</strong>: The bot now gracefully falls back to an in-memory cache when Redis is unavailable, ensuring uninterrupted operation and silencing all connection error spam in the logs.</li>
+                    </ul>
+                </div>
+
+                <div class="changelog-section fixes">
+                    <h3>🛠️ Bug Fixes & Infrastructure</h3>
+                    <ul>
+                        <li><strong>Redis Configuration Guard</strong>: The bot now detects invalid <code>http://</code> or insecure <code>redis://</code> (instead of the required <code>rediss://</code>) Upstash URLs on startup and prints a clear, actionable warning.</li>
+                        <li><strong>Gemini API Fix</strong>: Corrected the Gemini API endpoint and model identifier (<code>gemini-1.5-flash</code>), resolving persistent 400/404 errors.</li>
+                        <li><strong>OpenRouter Model Update</strong>: Updated the OpenRouter model from the deprecated <code>google/gemini-flash-1.5-exp</code> to the current <code>google/gemini-2.5-flash</code>.</li>
+                        <li><strong>Palestine Command Fix</strong>: Updated the Al Jazeera English RSS feed URL to the working <code>all.xml</code> feed and added a Palestine keyword filter for English articles, matching the Arabic feed behaviour.</li>
+                        <li><strong>Enhanced Error Logging</strong>: AI provider errors now log the full JSON response body from the provider, making debugging significantly faster.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Changelog v1.2.0 -->
+
+            <div class="changelog-item">
+                <div class="changelog-meta">
+                    <span class="changelog-version">v1.2.0</span>
+                    <span class="changelog-date">May 28, 2026</span>
+                </div>
+
+                <div class="changelog-section">
+                    <h3>🚀 New Features & Enhancements</h3>
+                    <ul>
+                        <li><strong>Native Server Profile Branding</strong>: SuperPremium servers can now natively customize the bot's nickname and server profile avatar directly in their guilds using the <code>/branding</code> command.</li>
+                        <li><strong>Guild-Level Premium Tiers</strong>: Entire servers can now be upgraded to Premium or SuperPremium status, giving elevated rate limits and premium benefits to all users in that server.</li>
+                        <li><strong>Interactive Direct Messaging (<code>/dm</code>)</strong>: Direct message users as the bot. Automatically creates a private <code>#dm-logs</code> channel with live <strong>Edit</strong> and <strong>Delete</strong> interactive buttons for full control over sent messages.</li>
+                        <li><strong>Advanced Broadcaster</strong>: Custom message broadcaster supporting text, files, custom embeds, and official link directories.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Changelog v1.1.0 -->
+            <div class="changelog-item">
+                <div class="changelog-meta">
+                    <span class="changelog-version">v1.1.0</span>
+                    <span class="changelog-date">May 28, 2026</span>
+                </div>
+
+                <div class="changelog-section">
+                    <h3>🚀 New Features & Enhancements</h3>
+                    <ul>
+                        <li><strong>Complete Admin Suite (<code>/admin</code>)</strong>: Supercharged bot administration with global and local blacklisting plus seamless Premium tier overrides.</li>
+                        <li><strong>Secure BYOK Subcommands (<code>/setkey</code>)</strong>: Redesigned as clean subcommands (<code>set</code>, <code>remove</code>) with complete AES-256 key encryption at rest.</li>
+                        <li><strong>Premium Profile Overhaul (<code>/profile</code>)</strong>: A premium visual card featuring dynamic avatars, support server verification status, custom key parameters, and rate limit displays.</li>
+                        <li><strong>Dua Interactive Categories (<code>/dua</code>)</strong>: Select Standard Duas easily using modern inline Discord category buttons.</li>
+                        <li><strong>Changelog Command (<code>/changelog</code>)</strong>: Track live development and structural features directly within Discord.</li>
+                    </ul>
+                </div>
+
+                <div class="changelog-section">
+                    <h3>💎 Design & Aesthetics Upgrade</h3>
+                    <ul>
+                        <li><strong>Centralized Custom Emojis</strong>: Relocated all status symbols into <code>utils/Emojis.ts</code>, removing inconsistent unicode fallback indicators.</li>
+                        <li><strong>Embed Formatting Optimizations</strong>: Handled strict Discord API footer constraints, placing all custom emoji citations within description fields to prevent raw tag rendering.</li>
+                        <li><strong>Color Balancing</strong>: Implemented gorgeous Emerald Green (<code>0x1E824C</code>) styling across all command responses to match elite UI conventions.</li>
+                    </ul>
+                </div>
+
+                <div class="changelog-section fixes">
+                    <h3>🛠️ Bug Fixes & Architecture</h3>
+                    <ul>
+                        <li><strong>Event Logging System</strong>: Critical logs (info, warning, error) are now beautifully formatted and routed directly to a server admin log channel.</li>
+                        <li><strong>Islamic Knowledge Guarantee</strong>: Programmed an AI system override that prevents tool-delegation (<code>missing_skill</code>) for Quranic or Hadith queries, guaranteeing local, highly accurate responses.</li>
+                        <li><strong>Ephemeral Message Handlers</strong>: Cleared out legacy <code>ephemeral: true</code> warnings, converting all systems to standard <code>flags: MessageFlags.Ephemeral</code>.</li>
+                        <li><strong>Admin Invite Count Bug</strong>: Fixed a core database bug where admin-granted Premium tiers mistakenly loaded fake server invite statistics.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Developed with care by <strong>Sejed TRABELSSI</strong> & Powered by <a href="https://discord.gg/pun3PXXDuE" target="_blank" rel="noopener noreferrer">Cortex HQ</a></p>
+            <p class="copyright">&copy; 2026 Islamic Community Bot. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

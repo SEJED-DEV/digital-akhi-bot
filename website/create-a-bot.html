@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Own Bot - Islamic Bot Docs</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .docs-container { max-width: 900px; margin: 4rem auto; padding: 0 1.5rem; }
+        .doc-section { margin-bottom: 3rem; }
+        .doc-section h2 { margin-bottom: 1rem; color: var(--primary); }
+        .doc-section p { color: #94a3b8; line-height: 1.6; margin-bottom: 1rem; }
+        .code-block { background: #1e293b; padding: 1.5rem; border-radius: 0.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; overflow-x: auto; border: 1px solid #334155; margin: 1rem 0; }
+        .step-list { list-style: none; padding: 0; }
+        .step-list li { margin-bottom: 2rem; position: relative; padding-left: 3rem; }
+        .step-list li::before { content: attr(data-step); position: absolute; left: 0; top: 0; width: 2rem; height: 2rem; background: var(--primary); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">Islamic <span>Bot</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="docs.html">Docs</a></li>
+                <li><a href="create-a-bot.html" class="active">Create a Bot</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="docs-container">
+        <header style="text-align: center; margin-bottom: 4rem;">
+            <div class="hero-badge" style="margin: 0 auto 1rem;">Official Developer Guide</div>
+            <h1>How to Create Your Own Bot</h1>
+            <p>Follow this step-by-step path to deploy your own instance of the Islamic Community Bot.</p>
+        </header>
+
+        <section class="doc-section">
+            <h2>Prerequisites</h2>
+            <p>Before you begin, ensure you have the following installed:</p>
+            <ul>
+                <li>Node.js v18.x or higher</li>
+                <li>MongoDB Database (local or Atlas)</li>
+                <li>Redis Server (required for rate-limiting)</li>
+                <li>Git</li>
+            </ul>
+        </section>
+
+        <section class="doc-section">
+            <h2>Step-by-Step Instructions</h2>
+            <ul class="step-list">
+                <li data-step="1">
+                    <h3>Register a Discord Application</h3>
+                    <p>Go to the <a href="https://discord.com/developers/applications" target="_blank" style="color: var(--primary);">Discord Developer Portal</a>, create a new application, and navigate to the "Bot" section. Reset the token and save it securely.</p>
+                    <p><strong>Required Privileged Intents:</strong> Ensure <code>Message Content Intent</code>, <code>Server Members Intent</code>, and <code>Presence Intent</code> are all enabled.</p>
+                </li>
+                <li data-step="2">
+                    <h3>Clone the Repository</h3>
+                    <p>Download the source code to your machine or server:</p>
+                    <div class="code-block">git clone https://github.com/Sejed-TRABELSSI/digital-akhi-bot.git<br>cd digital-akhi-bot</div>
+                </li>
+                <li data-step="3">
+                    <h3>Environment Configuration</h3>
+                    <p>Create a <code>.env</code> file in the root directory and fill in your credentials:</p>
+                    <div class="code-block">
+                        DISCORD_TOKEN=your_bot_token<br>
+                        MONGODB_URI=your_mongodb_connection_string<br>
+                        REDIS_URL=your_redis_url<br>
+                        ENCRYPTION_KEY=32_char_random_string<br>
+                        SUPPORT_SERVER_ID=your_guild_id
+                    </div>
+                </li>
+                <li data-step="4">
+                    <h3>Install & Build</h3>
+                    <p>Install dependencies and compile the TypeScript source:</p>
+                    <div class="code-block">npm install<br>npm run build</div>
+                </li>
+                <li data-step="5">
+                    <h3>Deploy & Start</h3>
+                    <p>Deploy the slash commands to Discord and start the bot:</p>
+                    <div class="code-block">npm run deploy<br>npm start</div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="doc-section">
+            <h2>Required Permissions</h2>
+            <p>When inviting your bot, it needs the following permissions to function correctly:</p>
+            <div class="code-block" style="background: #0f172a;">
+                - View Channels<br>
+                - Send Messages<br>
+                - Embed Links<br>
+                - Attach Files<br>
+                - Use Slash Commands<br>
+                - Manage Messages (for AutoMod & sticky messages)<br>
+                - Manage Channels (for lock/unlock & join-to-create)<br>
+                - Move Members (for join-to-create)<br>
+                - Moderate Members (for timeouts)<br>
+                - View Audit Log (for enriched logging)
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Developed with care by <strong>Sejed TRABELSSI</strong> 🇵🇸</p>
+        </div>
+    </footer>
+</body>
+</html>

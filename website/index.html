@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Islamic Community Bot - Secure, AI-powered, and highly reliable Discord bot built for the modern Muslim community with multilingual AI, Hadith search, and Supplications.">
+    <meta name="keywords" content="Islamic Bot, Discord Bot, Hadith Discord, Dua Discord, Islamic Community, Muslim Discord, AI Islamic Bot">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://digital-akhi.vercel.app/">
+    <meta property="og:title" content="Islamic Community Bot - Secure, AI-Powered, & Reliable">
+    <meta property="og:description" content="Secure, AI-powered, and highly reliable Discord bot built for the modern Muslim community.">
+    <meta property="og:image" content="https://digital-akhi.vercel.app/og-image.png">
+    <meta property="og:image:alt" content="Islamic Community Bot Logo">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://digital-akhi.vercel.app/">
+    <meta property="twitter:title" content="Islamic Community Bot - Secure, AI-Powered, & Reliable">
+    <meta property="twitter:description" content="Secure, AI-powered, and highly reliable Discord bot built for the modern Muslim community.">
+    <meta property="twitter:image" content="https://digital-akhi.vercel.app/og-image.png">
+
+    <title>Islamic Community Bot - Secure, AI-Powered, & Reliable</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <!-- Subtle Background Ambient Lights -->
+    <div class="glow-blob blob-1"></div>
+    <div class="glow-blob blob-2"></div>
+
+    <nav>
+        <div class="container">
+            <a href="#" class="logo" id="nav-logo">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Islamic <span>Bot</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#showcase">Commands</a></li>
+                <li><a href="docs.html">Docs</a></li>
+                <li><a href="create-a-bot.html">Create a Bot</a></li>
+                <li><a href="#tiers">Tiers</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li class="palestine-link"><a href="#">🇵🇸 Support Palestine</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div class="palestine-banner">
+        <span>🇵🇸 We stand in solidarity with Palestine. Support Gaza. 🇵🇸</span>
+    </div>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.25rem;"><polygon points="12 2 2 22 22 22 12 2"/></svg>
+                100% Open-Source & Transparent
+            </div>
+            <h1>The Resilient <span>Islamic Community</span> Bot</h1>
+            <p>Secure, AI-powered, and built with zero-trust protection for modern Muslim servers on Discord.</p>
+            <div class="hero-btns">
+                <a href="https://discord.com/api/oauth2/authorize?client_id=1301931826978426911&permissions=8&scope=bot%20applications.commands" class="btn btn-primary" id="btn-invite">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+                    Add to Discord
+                </a>
+                <a href="https://github.com/SEJED-DEV/digital-akhi-bot" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" id="btn-github">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    View Repository
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Active Guilds</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">45K+</div>
+                    <div class="stat-label">Total Users</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">AI Failover Uptime</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">250K+</div>
+                    <div class="stat-label">Requests Answered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Designed with Care & Premium Tech</h2>
+            <p class="section-subtitle">A state-of-the-art server companion built specifically to elevate conversations, supply authenticated knowledge, and protect server databases.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card" id="feat-ai">
+                    <div class="feature-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2" ry="2"/><path d="M12 2v3M8 5v2M16 5v2M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <h3>Multilingual Islamic AI</h3>
+                    <p>Robust natural-language processing supporting Standard Arabic, Transliteration, and Arabizi to answer queries based on verified scholarly works.</p>
+                </div>
+                
+                <div class="feature-card" id="feat-hadith">
+                    <div class="feature-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    </div>
+                    <h3>Verified Knowledge</h3>
+                    <p>Instantly fetch authentic Hadiths complete with precise source gradings (Sahih, Hasan, etc.) alongside contextual, beautiful supplications (Duas).</p>
+                </div>
+                
+                <div class="feature-card" id="feat-uptime">
+                    <div class="feature-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <h3>Failover Reliability</h3>
+                    <p>Engineered with automated client dynamic failovers across secondary premium AI providers for completely uninterrupted server operations.</p>
+                </div>
+                
+                <div class="feature-card" id="feat-automod">
+                    <div class="feature-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </div>
+                    <h3>Advanced AutoMod</h3>
+                    <p>Next-gen protection against raids, spam, and forbidden language. Features leetspeak detection and automatic emergency lockdowns.</p>
+                </div>
+
+                <div class="feature-card" id="feat-community">
+                    <div class="feature-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Community Tools</h3>
+                    <p>Join-to-Create voice channels, auto-updating server statistics, and interactive giveaways to keep your Ummah engaged and active.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discord Showcase Section (Three-Pane Mock Discord Layout) -->
+    <section id="showcase" class="showcase-section">
+        <div class="container">
+            <h2>Experience the Interactive Simulator</h2>
+            <p class="section-subtitle">Navigate through channels in our mock Discord Client below to see exactly how commands render in clean, high-fidelity embeds.</p>
+            
+            <div class="discord-app">
+                <!-- Server list (Left bar) -->
+                <div class="discord-servers">
+                    <div class="server-icon active" title="Your Guild Server">YG</div>
+                    <div class="server-separator"></div>
+                    <div class="server-icon" title="Support Server" onclick="window.open('https://discord.gg/pun3PXXDuE')">💬</div>
+                </div>
+
+                <!-- Channel Sidebar (Middle bar) -->
+                <div class="discord-sidebar">
+                    <div class="sidebar-header">Faith Community</div>
+                    <div class="sidebar-channels">
+                        <div style="color: #949ba4; font-size: 0.75rem; font-weight: 700; padding: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Text Channels</div>
+                        
+                        <button class="channel-btn active" data-cmd="hadith">
+                            <span style="font-size: 1.1rem; color: #949ba4; margin-right: 0.25rem;">#</span>hadith-lookup
+                        </button>
+                        <button class="channel-btn" data-cmd="dua">
+                            <span style="font-size: 1.1rem; color: #949ba4; margin-right: 0.25rem;">#</span>dua-prayers
+                        </button>
+                        <button class="channel-btn" data-cmd="prayer">
+                            <span style="font-size: 1.1rem; color: #949ba4; margin-right: 0.25rem;">#</span>prayer-times
+                        </button>
+                        <button class="channel-btn" data-cmd="profile">
+                            <span style="font-size: 1.1rem; color: #949ba4; margin-right: 0.25rem;">#</span>profile-stats
+                        </button>
+                        <button class="channel-btn" data-cmd="setkey">
+                            <span style="font-size: 1.1rem; color: #949ba4; margin-right: 0.25rem;">#</span>byok-api-setup
+                        </button>
+                        <button class="channel-btn" data-cmd="config">
+                            <span style="font-size: 1.1rem; color: #949ba4; margin-right: 0.25rem;">#</span>admin-config
+                        </button>
+                        <button class="channel-btn" data-cmd="modstats">
+                            <span style="font-size: 1.1rem; color: #949ba4; margin-right: 0.25rem;">#</span>moderator-stats
+                        </button>
+                        <button class="channel-btn" data-cmd="giveaway">
+                            <span style="font-size: 1.1rem; color: #949ba4; margin-right: 0.25rem;">#</span>giveaways
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chat Pane (Right side) -->
+                <div class="discord-chat">
+                    <div class="chat-header">
+                        <span style="font-size: 1.5rem; color: #949ba4;">#</span>
+                        <span id="chat-header-name">hadith-lookup</span>
+                    </div>
+                    
+                    <div class="chat-messages">
+                        <!-- /hadith message -->
+                        <div class="discord-message active" id="msg-hadith">
+                            <div class="discord-avatar user-avatar">U</div>
+                            <div class="discord-msg-content">
+                                <div class="discord-header">
+                                    <span class="discord-username">GuildMember</span>
+                                    <span class="discord-time">Today at 12:00 PM</span>
+                                </div>
+                                <div class="discord-text"><code>/hadith query: deeds are judged by intentions</code></div>
+                                
+                                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                                    <div class="discord-avatar">IB</div>
+                                    <div class="discord-msg-content">
+                                        <div class="discord-header">
+                                            <span class="discord-username bot-name">Islamic Bot</span>
+                                            <span class="discord-bot-badge">Bot</span>
+                                            <span class="discord-time">Today at 12:00 PM</span>
+                                        </div>
+                                        <div class="discord-embed">
+                                            <div class="discord-embed-author">
+                                                <svg class="discord-embed-author-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--primary);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                                Verified Hadith Source
+                                            </div>
+                                            <div class="discord-embed-title">Sahih al-Bukhari, Hadith 1</div>
+                                            <div class="discord-embed-desc">
+                                                "Deeds are judged by intentions, and every person will have only that which he intended. So whoever's emigration was to Allah and His Messenger, his emigration was to Allah and His Messenger..."
+                                            </div>
+                                            <div class="discord-embed-fields">
+                                                <div class="discord-embed-field">
+                                                    <div class="discord-embed-field-name">Grading</div>
+                                                    <div class="discord-embed-field-val" style="color: #00e5a3; font-weight: bold;">Sahih (Authentic)</div>
+                                                </div>
+                                                <div class="discord-embed-field">
+                                                    <div class="discord-embed-field-name">Narrator</div>
+                                                    <div class="discord-embed-field-val">Umar ibn al-Khattab (RA)</div>
+                                                </div>
+                                            </div>
+                                            <div class="discord-embed-footer">Powered by Digital Akhi Bot • verified knowledge database</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- /dua message -->
+                        <div class="discord-message" id="msg-dua">
+                            <div class="discord-avatar user-avatar">U</div>
+                            <div class="discord-msg-content">
+                                <div class="discord-header">
+                                    <span class="discord-username">GuildMember</span>
+                                    <span class="discord-time">Today at 12:02 PM</span>
+                                </div>
+                                <div class="discord-text"><code>/dua situation: seeking patience</code></div>
+                                
+                                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                                    <div class="discord-avatar">IB</div>
+                                    <div class="discord-msg-content">
+                                        <div class="discord-header">
+                                            <span class="discord-username bot-name">Islamic Bot</span>
+                                            <span class="discord-bot-badge">Bot</span>
+                                            <span class="discord-time">Today at 12:02 PM</span>
+                                        </div>
+                                        <div class="discord-embed">
+                                            <div class="discord-embed-author">
+                                                <svg class="discord-embed-author-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--primary);"><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+                                                Contextual Supplication
+                                            </div>
+                                            <div class="discord-embed-title">Dua for Patience & Strength (Al-Baqarah 2:250)</div>
+                                            <div class="discord-embed-desc">
+                                                <strong>Arabic:</strong> رَبَّنَا أَفْرِغْ عَلَيْنَا صَبْرًا وَثَبِّتْ أَقْدَامَنَا وَانصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ<br><br>
+                                                <strong>Transliteration:</strong> Rabbana afrigh 'alayna sabran wa thabbit aqdamana wansurna 'alal-qawmil-kafirin.<br><br>
+                                                <strong>Translation:</strong> "Our Lord, pour upon us patience and plant firmly our feet and give us victory over the disbelieving people."
+                                            </div>
+                                            <div class="discord-embed-footer">Recommended for: Anxiety, Hardship, Challenges</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- /prayer message -->
+                        <div class="discord-message" id="msg-prayer">
+                            <div class="discord-avatar user-avatar">U</div>
+                            <div class="discord-msg-content">
+                                <div class="discord-header">
+                                    <span class="discord-username">GuildMember</span>
+                                    <span class="discord-time">Today at 12:04 PM</span>
+                                </div>
+                                <div class="discord-text"><code>/prayer city: London</code></div>
+                                
+                                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                                    <div class="discord-avatar">IB</div>
+                                    <div class="discord-msg-content">
+                                        <div class="discord-header">
+                                            <span class="discord-username bot-name">Islamic Bot</span>
+                                            <span class="discord-bot-badge">Bot</span>
+                                            <span class="discord-time">Today at 12:04 PM</span>
+                                        </div>
+                                        <div class="discord-embed">
+                                            <div class="discord-embed-author">
+                                                <svg class="discord-embed-author-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--primary);"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                                Daily Prayer Times
+                                            </div>
+                                            <div class="discord-embed-title">London, United Kingdom (Today)</div>
+                                            <div class="discord-embed-desc">
+                                                Daily prayer timings calculated for London region:
+                                            </div>
+                                            <div class="discord-embed-fields">
+                                                <div class="discord-embed-field">
+                                                    <div class="discord-embed-field-name">Fajr</div>
+                                                    <div class="discord-embed-field-val">03:42 AM</div>
+                                                </div>
+                                                <div class="discord-embed-field">
+                                                    <div class="discord-embed-field-name">Dhuhr</div>
+                                                    <div class="discord-embed-field-val">01:05 PM</div>
+                                                </div>
+                                                <div class="discord-embed-field">
+                                                    <div class="discord-embed-field-name">Asr</div>
+                                                    <div class="discord-embed-field-val">05:12 PM</div>
+                                                </div>
+                                                <div class="discord-embed-field">
+                                                    <div class="discord-embed-field-name">Maghrib</div>
+                                                    <div class="discord-embed-field-val">08:58 PM</div>
+                                                </div>
+                                                <div class="discord-embed-field">
+                                                    <div class="discord-embed-field-name">Isha</div>
+                                                    <div class="discord-embed-field-val">10:24 PM</div>
+                                                </div>
+                                            </div>
+                                            <div class="discord-embed-footer">Notification settings: On • Adhan schedule active</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- /profile message -->
+                        <div class="discord-message" id="msg-profile">
+                            <div class="discord-avatar user-avatar">U</div>
+                            <div class="discord-msg-content">
+                                <div class="discord-header">
+                                    <span class="discord-username">GuildMember</span>
+                                    <span class="discord-time">Today at 12:06 PM</span>
+                                </div>
+                                <div class="discord-text"><code>/profile</code></div>
+                                
+                                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                                    <div class="discord-avatar">IB</div>
+                                    <div class="discord-msg-content">
+                                        <div class="discord-header">
+                                            <span class="discord-username bot-name">Islamic Bot</span>
+                                            <span class="discord-bot-badge">Bot</span>
+                                            <span class="discord-time">Today at 12:06 PM</span>
+                                        </div>
+                                        <div class="discord-embed">
+                                            <div class="discord-embed-author">
+                                                <svg class="discord-embed-author-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--primary);"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                                Server Profile Card
+                                            </div>
+                                            <div class="discord-embed-title">Member Profile: GuildMember</div>
+                                            <div class="discord-embed-fields">
+                                                <div class="discord-embed-field">
+                                                    <div class="discord-embed-field-name">Status Tier</div>
+                                                    <div class="discord-embed-field-val" style="color: var(--primary); font-weight: bold;">Premium Tier</div>
+                                                </div>
+                                                <div class="discord-embed-field">
+                                                    <div class="discord-embed-field-name">Valid Invites</div>
+                                                    <div class="discord-embed-field-val">34 / 30 required</div>
+                                                </div>
+                                                <div class="discord-embed-field">
+                                                    <div class="discord-embed-field-name">Requests Used</div>
+                                                    <div class="discord-embed-field-val">12 / 50 (Resets in 2.5h)</div>
+                                                </div>
+                                                <div class="discord-embed-field">
+                                                    <div class="discord-embed-field-name">User Level</div>
+                                                    <div class="discord-embed-field-val">Level 18 (Active Supporter)</div>
+                                                </div>
+                                            </div>
+                                            <div class="discord-embed-footer">Profile updates dynamically every interaction</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- /setkey message -->
+                        <div class="discord-message" id="msg-setkey">
+                            <div class="discord-avatar user-avatar">U</div>
+                            <div class="discord-msg-content">
+                                <div class="discord-header">
+                                    <span class="discord-username">GuildMember</span>
+                                    <span class="discord-time">Today at 12:08 PM</span>
+                                </div>
+                                <div class="discord-text"><code>/setkey provider: openrouter key: sk-or-...</code></div>
+                                
+                                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                                    <div class="discord-avatar">IB</div>
+                                    <div class="discord-msg-content">
+                                        <div class="discord-header">
+                                            <span class="discord-username bot-name">Islamic Bot</span>
+                                            <span class="discord-bot-badge">Bot</span>
+                                            <span class="discord-time">Today at 12:08 PM</span>
+                                        </div>
+                                        <div class="discord-embed">
+                                            <div class="discord-embed-author">
+                                                <svg class="discord-embed-author-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--primary);"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+                                                Secure KeyRing System
+                                            </div>
+                                            <div class="discord-embed-title">Bring-Your-Own-Key (BYOK) Status</div>
+                                            <div class="discord-embed-desc">
+                                                <span style="color: #248046; font-weight: bold;">✔ Key accepted successfully!</span><br><br>
+                                                Your custom API credentials for OpenRouter are securely encrypted at rest using AES-256-CBC. Islamic Bot will now run queries utilizing your custom key.
+                                            </div>
+                                            <div class="discord-embed-footer">Remove key anytime using /removekey</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- /config message -->
+                        <div class="discord-message" id="msg-config">
+                            <div class="discord-avatar user-avatar">A</div>
+                            <div class="discord-msg-content">
+                                <div class="discord-header">
+                                    <span class="discord-username" style="color: #e67e22;">ServerAdmin</span>
+                                    <span class="discord-time">Today at 12:10 PM</span>
+                                </div>
+                                <div class="discord-text"><code>/config view</code></div>
+                                
+                                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                                    <div class="discord-avatar">IB</div>
+                                    <div class="discord-msg-content">
+                                        <div class="discord-header">
+                                            <span class="discord-username bot-name">Islamic Bot</span>
+                                            <span class="discord-bot-badge">Bot</span>
+                                            <span class="discord-time">Today at 12:10 PM</span>
+                                        </div>
+                                        <div class="discord-embed">
+                                            <div class="discord-embed-author">
+                                                <svg class="discord-embed-author-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--primary);"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                                                Server Configuration Panel
+                                            </div>
+                                            <div class="discord-embed-title">Guild: Faith & Community Discord</div>
+                                            <div class="discord-embed-fields">
+                                                <div class="discord-embed-field">
+                                                    <div class="discord-embed-field-name">Welcome Channel</div>
+                                                    <div class="discord-embed-field-val">#general-chat</div>
+                                                </div>
+                                                <div class="discord-embed-field">
+                                                    <div class="discord-embed-field-name">Adhan Broadcaster</div>
+                                                    <div class="discord-embed-field-val" style="color: #248046; font-weight: bold;">Enabled (#prayer-reminders)</div>
+                                                </div>
+                                                <div class="discord-embed-field">
+                                                    <div class="discord-embed-field-name">Sandboxed Prompts</div>
+                                                    <div class="discord-embed-field-val">Strict Enforcement (On)</div>
+                                                </div>
+                                                <div class="discord-embed-field">
+                                                    <div class="discord-embed-field-name">Supported Language</div>
+                                                    <div class="discord-embed-field-val">Standard Arabic & English</div>
+                                                </div>
+                                            </div>
+                                            <div class="discord-embed-footer">Manage settings with /config [subcommand]</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- /modstats message -->
+                        <div class="discord-message" id="msg-modstats">
+                            <div class="discord-avatar user-avatar">A</div>
+                            <div class="discord-msg-content">
+                                <div class="discord-header">
+                                    <span class="discord-username" style="color: #e67e22;">ServerAdmin</span>
+                                    <span class="discord-time">Today at 12:12 PM</span>
+                                </div>
+                                <div class="discord-text"><code>/modstats</code></div>
+
+                                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                                    <div class="discord-avatar">IB</div>
+                                    <div class="discord-msg-content">
+                                        <div class="discord-header">
+                                            <span class="discord-username bot-name">Islamic Bot</span>
+                                            <span class="discord-bot-badge">Bot</span>
+                                            <span class="discord-time">Today at 12:12 PM</span>
+                                        </div>
+                                        <div class="discord-embed">
+                                            <div class="discord-embed-author">
+                                                <svg class="discord-embed-author-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--primary);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                                Moderator Leaderboard
+                                            </div>
+                                            <div class="discord-embed-title">Top Moderators (This Month)</div>
+                                            <div class="discord-embed-desc">
+                                                1. <strong>ServerAdmin</strong>: 142 actions<br>
+                                                2. <strong>ModeratorAkhi</strong>: 98 actions<br>
+                                                3. <strong>GuardMember</strong>: 45 actions
+                                            </div>
+                                            <div class="discord-embed-footer">Use /modstats @user for individual performance</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- /giveaway message -->
+                        <div class="discord-message" id="msg-giveaway">
+                            <div class="discord-avatar user-avatar">A</div>
+                            <div class="discord-msg-content">
+                                <div class="discord-header">
+                                    <span class="discord-username" style="color: #e67e22;">ServerAdmin</span>
+                                    <span class="discord-time">Today at 12:14 PM</span>
+                                </div>
+                                <div class="discord-text"><code>/giveaway create prize: 1 Month Nitro</code></div>
+
+                                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                                    <div class="discord-avatar">IB</div>
+                                    <div class="discord-msg-content">
+                                        <div class="discord-header">
+                                            <span class="discord-username bot-name">Islamic Bot</span>
+                                            <span class="discord-bot-badge">Bot</span>
+                                            <span class="discord-time">Today at 12:14 PM</span>
+                                        </div>
+                                        <div class="discord-embed">
+                                            <div class="discord-embed-author">
+                                                <svg class="discord-embed-author-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--primary);"><path d="M20 12V8H6v4"/><path d="M4 8h16"/><path d="M12 8V4"/><path d="M8 8v12h8V8"/><path d="M12 4c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"/></svg>
+                                                Community Giveaway
+                                            </div>
+                                            <div class="discord-embed-title">New Prize: 1 Month Nitro</div>
+                                            <div class="discord-embed-desc">
+                                                Click the button below to join the giveaway! Good luck to all brothers and sisters.<br><br>
+                                                <strong>Ends:</strong> In 24 hours<br>
+                                                <strong>Host:</strong> &lt;@ServerAdmin&gt;
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                                                <div style="background: #2ecc71; color: white; padding: 4px 12px; border-radius: 3px; font-size: 0.85rem; font-weight: 600;">Join Giveaway</div>
+                                            </div>
+                                            <div class="discord-embed-footer">0 participants so far</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stepper Setup Timeline Section -->
+    <section id="setup" class="stepper-section">
+        <div class="container">
+            <h2>Add to Your Server in 3 Steps</h2>
+            <p class="section-subtitle">Get the Islamic Community Bot set up and fully functioning in your Guild within minutes.</p>
+            
+            <div class="stepper-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-card">
+                        <h3>Invite the Bot</h3>
+                        <p>Click "Add to Discord" at the top of the page. Select your guild server, grant the requested permissions, and complete the authentication process.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-card">
+                        <h3>Configure Admin Settings</h3>
+                        <p>Run the <code>/config</code> command in your server to set welcome announcements channels, toggle strictly sandboxed mode, or enable automatic Adhan prayer broadcasters.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-card">
+                        <h3>Engage the Community</h3>
+                        <p>Members can now instantly run verified Hadith queries with <code>/hadith</code>, request situational Duas using <code>/dua</code>, and check localized daily prayer times with <code>/prayer</code>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tiers Section -->
+    <section id="tiers" class="tiers">
+        <div class="container">
+            <h2>Flexible Access Tiers</h2>
+            <p class="section-subtitle">Select the tier appropriate for your community. Our member tracking services dynamically manage levels upon matching targets.</p>
+            
+            <div class="tier-grid">
+                <div class="tier-card" id="tier-standard">
+                    <h3>Standard</h3>
+                    <p class="desc">Perfect for smaller, growing servers.</p>
+                    <p class="price">Free <span class="subtext">48h Trial</span></p>
+                    <ul>
+                        <li>20 API Queries / 6 Hours</li>
+                        <li>4,000 Words Context</li>
+                        <li>Community Support</li>
+                        <li>Interactive Quiz System</li>
+                    </ul>
+                    <a href="https://discord.com/api/oauth2/authorize?client_id=1301931826978426911&permissions=8&scope=bot%20applications.commands" class="btn btn-secondary">Invite Standard</a>
+                </div>
+                
+                <div class="tier-card featured" id="tier-premium">
+                    <span class="tier-badge">Most Popular</span>
+                    <h3>Premium</h3>
+                    <p class="desc">For active guilds seeking maximum speed.</p>
+                    <p class="price">30 Invites <span class="subtext">or 2 Boosts</span></p>
+                    <ul>
+                        <li>50 API Queries / 6 Hours</li>
+                        <li>32,000 Words Context</li>
+                        <li>High-priority AI response queues</li>
+                        <li>Adhan custom broadcasters setting</li>
+                        <li>Premium Support server channel</li>
+                    </ul>
+                    <a href="https://discord.com/api/oauth2/authorize?client_id=1301931826978426911&permissions=8&scope=bot%20applications.commands" class="btn btn-primary">Go Premium</a>
+                </div>
+
+                <div class="tier-card" id="tier-super-premium">
+                    <h3>SuperPremium</h3>
+                    <p class="desc">Maximum power for large communities.</p>
+                    <p class="price">50 Invites <span class="subtext">& Support Join</span></p>
+                    <ul>
+                        <li>100 API Queries / 6 Hours</li>
+                        <li>128,000 Words Context</li>
+                        <li>Unlimited BYOK Usage</li>
+                        <li>Custom Branding Control</li>
+                        <li>Direct Developer Support</li>
+                    </ul>
+                    <a href="https://discord.com/api/oauth2/authorize?client_id=1301931826978426911&permissions=8&scope=bot%20applications.commands" class="btn btn-secondary">Go SuperPremium</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <p class="section-subtitle">Find answers to common questions about setting up, pricing, security, and verified databases.</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        How does the bot verify Hadiths?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        The bot queries authenticated Islamic databases with precise grading metadata. When a user runs a lookup, the bot displays precise gradings (Sahih, Hasan, Da'if) and specific collection context references.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        What is BYOK (Bring Your Own Key)?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        BYOK allows server administrators or individual members to input their own AI provider keys (like OpenRouter or OpenAI) using the secure <code>/setkey</code> command. Your custom key is stored with robust AES-256-CBC encryption. <strong>Using your own key removes all rate limits!</strong>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        How does the 48-hour trial work?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        Every new user can test the bot's AI features for 48 hours using our default API keys. After this period, you will be required to add your own API key (BYOK) via <code>/setkey</code> to continue using the AI. Non-AI commands like <code>/prayer</code> remain free forever.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        How does the failover system work?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        If our primary AI model service encounters latency or temporary outages, the bot's dynamic client-side handler automatically shifts queries to secondary backup providers within milliseconds, ensuring absolute stability.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        Is our community server data safe?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        Absolutely. The bot is designed with a robust zero-trust architecture. We enforce triple-quote sandboxing to neutralize prompt injection threats and perform rigorous backend verification to prevent unauthorized admin configuration edits.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Developed with care by <strong>Sejed TRABELSSI</strong> & Powered by <a href="https://discord.gg/pun3PXXDuE" target="_blank" rel="noopener noreferrer">Cortex HQ</a></p>
+            <p class="copyright">&copy; 2026 Islamic Community Bot. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive JS for Discord Client Mockup and FAQ Accordions -->
+    <script>
+        // Interactive Discord Client mock switching
+        const channelBtns = document.querySelectorAll('.channel-btn');
+        const messages = document.querySelectorAll('.discord-message');
+        const headerName = document.getElementById('chat-header-name');
+
+        channelBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active classes
+                channelBtns.forEach(c => c.classList.remove('active'));
+                messages.forEach(m => m.classList.remove('active'));
+
+                // Set current active
+                btn.classList.add('active');
+                
+                const cmd = btn.getAttribute('data-cmd');
+                const targetMsg = document.getElementById(`msg-${cmd}`);
+                if (targetMsg) {
+                    targetMsg.classList.add('active');
+                }
+                
+                // Update chat header title
+                headerName.textContent = btn.textContent.trim().replace('#', '');
+            });
+        });
+
+        // FAQ Accordion Toggle
+        const faqTriggers = document.querySelectorAll('.faq-trigger');
+        faqTriggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const item = trigger.parentElement;
+                const wasActive = item.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+                
+                // Toggle clicked item
+                if (!wasActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

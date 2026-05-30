@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete Developer & Self-Hosting Documentation for the Islamic Community Bot — step-by-step setup, environment configuration, architecture reference, and troubleshooting.">
+    <title>Documentation — Islamic Community Bot</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        /* Additional doc-only overrides */
+        .docs-section p code,
+        .docs-section li code,
+        .docs-section td code { white-space: nowrap; }
+        .cmd-ref-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap:1.5rem; margin:2rem 0; }
+        .cmd-card { background:rgba(0,0,0,.2); border:1px solid var(--border-color); border-radius:10px; padding:1.5rem; }
+        .cmd-card h4 { color:var(--primary); font-size:1.05rem; font-family:'JetBrains Mono',monospace; margin-bottom:.5rem; }
+        .cmd-card p  { color:var(--text-muted); font-size:.9rem; margin:0; }
+        .cmd-card .params { margin-top:.75rem; }
+        .cmd-card .param { font-size:.8rem; background:rgba(255,255,255,.04); border:1px solid var(--border-color); border-radius:4px; padding:.2rem .5rem; display:inline-block; margin:.2rem .2rem 0 0; color:var(--text-main); }
+        .provider-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.25rem; margin:2rem 0; }
+        .provider-card { background:rgba(0,0,0,.2); border:1px solid var(--border-color); border-radius:8px; padding:1.25rem; }
+        .provider-card .pname { font-weight:700; color:var(--white); margin-bottom:.25rem; }
+        .provider-card .purl  { font-size:.8rem; color:var(--primary); text-decoration:none; }
+        .provider-card p { font-size:.85rem; color:var(--text-muted); margin-top:.5rem; margin-bottom:0; }
+        .alert-box { border-radius:6px; padding:1rem 1.25rem; margin:1.5rem 0; border-left:4px solid; }
+        .alert-warn  { background:rgba(251,191,36,.06); border-color:#fbbf24; }
+        .alert-warn  p { color:#fbbf24 !important; margin:0 !important; font-size:.9rem; }
+        .alert-info  { background:rgba(59,130,246,.06); border-color:#3b82f6; }
+        .alert-info  p { color:#93c5fd !important; margin:0 !important; font-size:.9rem; }
+        .alert-success { background:rgba(0,229,163,.05); border-color:var(--primary); }
+        .alert-success p { color:var(--primary) !important; margin:0 !important; font-size:.9rem; }
+        .step-inline { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; background:var(--grad-primary); color:#07090e; font-size:.75rem; font-weight:800; margin-right:.4rem; flex-shrink:0; }
+        .numbered-list { list-style:none !important; margin-left:0 !important; }
+        .numbered-list li { display:flex; align-items:flex-start; gap:.75rem; margin-bottom:1.25rem !important; }
+        .numbered-list li span.num { width:28px; height:28px; border-radius:50%; border:2px solid var(--primary); color:var(--primary); font-size:.8rem; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:.05rem; }
+        .numbered-list li div { flex:1; color:var(--text-muted); font-size:.95rem; line-height:1.65; }
+        .numbered-list li div strong { color:var(--white); }
+        .service-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; margin:2rem 0; }
+        .service-card { background:var(--bg-card); border:1px solid var(--border-color); border-radius:10px; padding:1.5rem; }
+        .service-card h4 { color:var(--primary); font-family:'JetBrains Mono',monospace; font-size:.95rem; margin-bottom:.5rem; }
+        .service-card p { color:var(--text-muted); font-size:.88rem; margin:0; line-height:1.6; }
+    </style>
+</head>
+<body>
+    <div class="glow-blob blob-1"></div>
+    <div class="glow-blob blob-2"></div>
+
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--primary)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Islamic <span>Bot</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="docs.html" style="color:var(--primary)">Docs</a></li>
+                <li><a href="changelog.html">Changelog</a></li>
+                <li><a href="terms.html">Terms</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="https://github.com/SEJED-DEV/digital-akhi-bot" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:.35rem">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    GitHub
+                </a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <header class="docs-header">
+        <div class="container">
+            <span class="hero-badge">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right:.25rem"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                Open-Source · AGPL-3.0 License
+            </span>
+            <h1>Developer Documentation</h1>
+            <p>Complete reference for self-hosting, configuring, and contributing to the Islamic Community Bot.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="docs-container">
+
+            <!-- ======================== SIDEBAR ======================== -->
+            <aside class="docs-sidebar">
+                <div class="docs-nav-group">
+                    <div class="docs-nav-title">Overview</div>
+                    <a href="#intro"        class="docs-nav-link active">Introduction</a>
+                    <a href="#tech-stack"   class="docs-nav-link">Tech Stack</a>
+                    <a href="#architecture" class="docs-nav-link">Architecture</a>
+                </div>
+                <div class="docs-nav-group">
+                    <div class="docs-nav-title">Prerequisites</div>
+                    <a href="#prereq-node"    class="docs-nav-link">Node.js &amp; TypeScript</a>
+                    <a href="#prereq-discord" class="docs-nav-link">Discord Application</a>
+                    <a href="#prereq-mongo"   class="docs-nav-link">MongoDB Setup</a>
+                    <a href="#prereq-redis"   class="docs-nav-link">Redis Setup</a>
+                    <a href="#prereq-ai"      class="docs-nav-link">AI API Keys</a>
+                </div>
+                <div class="docs-nav-group">
+                    <div class="docs-nav-title">Getting Started</div>
+                    <a href="#install"  class="docs-nav-link">Installation</a>
+                    <a href="#env"      class="docs-nav-link">Environment Variables</a>
+                    <a href="#commands-deploy" class="docs-nav-link">Deploy Slash Commands</a>
+                    <a href="#run"      class="docs-nav-link">Running the Bot</a>
+                </div>
+                <div class="docs-nav-group">
+                    <div class="docs-nav-title">Features</div>
+                    <a href="#commands-ref" class="docs-nav-link">Command Reference</a>
+                    <a href="#automod"      class="docs-nav-link">AutoMod System</a>
+                    <a href="#modstats"     class="docs-nav-link">Moderator Stats</a>
+                    <a href="#tiers"        class="docs-nav-link">Tier System</a>
+                    <a href="#byok"         class="docs-nav-link">BYOK &amp; KeyRing</a>
+                    <a href="#security"     class="docs-nav-link">Security Model</a>
+                    <a href="#lifecycle"    class="docs-nav-link">Data Lifecycle</a>
+                </div>
+                <div class="docs-nav-group">
+                    <div class="docs-nav-title">Contributing</div>
+                    <a href="#contributing"    class="docs-nav-link">Contribution Guide</a>
+                    <a href="#adding-commands" class="docs-nav-link">Adding Commands</a>
+                    <a href="#troubleshoot"    class="docs-nav-link">Troubleshooting</a>
+                </div>
+                <div class="docs-nav-group">
+                    <div class="docs-nav-title">Reference</div>
+                    <a href="#faq"     class="docs-nav-link">FAQ</a>
+                    <a href="#license" class="docs-nav-link">License</a>
+                </div>
+            </aside>
+
+            <!-- ======================== CONTENT ======================== -->
+            <main class="docs-content">
+
+                <!-- ─── INTRODUCTION ─── -->
+                <section id="intro" class="docs-section">
+                    <h2>Introduction</h2>
+                    <p>The <strong>Islamic Community Bot</strong> (code name <code>digital-akhi-bot</code>) is a production-grade, open-source Discord bot built specifically for Muslim communities. It combines verified Islamic knowledge retrieval, multilingual AI conversations, and robust community management tooling into a single, secure package.</p>
+                    <p>The bot is fully self-hostable under the <strong>AGPL-3.0 License</strong> — you own every line that runs on your infrastructure. It is designed to be both community-friendly for non-technical server admins and developer-friendly for contributors who want to extend its capabilities.</p>
+                    <h3>Core Capabilities</h3>
+                    <ul>
+                        <li><strong>Multilingual AI</strong> — Understands Standard Arabic, English transliteration, and informal <em>Arabizi</em> (Arabic written in Latin script).</li>
+                        <li><strong>Verified Islamic Knowledge</strong> — Hadiths with grading metadata (Sahih, Hasan, Da'if) and contextual Duas sourced from authenticated databases.</li>
+                        <li><strong>Dynamic Prayer Times</strong> — City-based salah schedule via the open Aladhan API.</li>
+                        <li><strong>Multi-Provider AI Failover</strong> — Automatically switches between Groq, Gemini, Cerebras, SambaNova, Together AI, and OpenRouter so the bot is never "down" due to a single provider outage.</li>
+                        <li><strong>Invite &amp; Boost Tier Tracking</strong> — Automatically upgrades server members based on invite counts or server boost status.</li>
+                        <li><strong>Zero-Trust Security</strong> — Triple-quote prompt sandboxing, per-command permission verification, and encrypted BYOK credential storage.</li>
+                        <li><strong>Automatic Data Archival</strong> — Nightly <code>zlib</code>-compressed cold storage of interaction logs after a 30-day hot window.</li>
+                    </ul>
+                </section>
+
+                <!-- ─── TECH STACK ─── -->
+                <section id="tech-stack" class="docs-section">
+                    <h2>Tech Stack</h2>
+                    <table>
+                        <thead><tr><th>Layer</th><th>Technology</th><th>Version</th><th>Purpose</th></tr></thead>
+                        <tbody>
+                            <tr><td>Runtime</td><td><code>Node.js</code> (ESM)</td><td>v18+</td><td>JavaScript execution environment</td></tr>
+                            <tr><td>Language</td><td><code>TypeScript</code></td><td>^5.2</td><td>Type-safe source code</td></tr>
+                            <tr><td>Discord</td><td><code>discord.js</code></td><td>^14.13</td><td>Gateway connection &amp; slash commands</td></tr>
+                            <tr><td>Primary DB</td><td><code>MongoDB</code> via Mongoose</td><td>^7.6</td><td>Server configs, invite records, user profiles</td></tr>
+                            <tr><td>Cache / Rate-Limit</td><td><code>Redis</code> via ioredis</td><td>^5.3</td><td>Sliding-window rate limiting</td></tr>
+                            <tr><td>HTTP Client</td><td><code>axios</code></td><td>^1.6</td><td>AI API &amp; Aladhan API calls</td></tr>
+                            <tr><td>Scheduler</td><td><code>node-cron</code></td><td>^3.0</td><td>Nightly archival &amp; maintenance tasks</td></tr>
+                            <tr><td>Dev Compiler</td><td><code>ts-node</code></td><td>^10.9</td><td>Run TypeScript directly in development</td></tr>
+                            <tr><td>Env Config</td><td><code>dotenv</code></td><td>^16.3</td><td>Load <code>.env</code> variables at runtime</td></tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- ─── ARCHITECTURE ─── -->
+                <section id="architecture" class="docs-section">
+                    <h2>Core Architecture</h2>
+                    <p>The codebase is split into clearly-separated concerns. Understanding this layout is essential before you start modifying or extending the bot.</p>
+                    <pre><code>digital-akhi-bot/
+├── index.ts              # Bootstrap — creates Client, loads commands, connects DB
+├── commands/             # Slash command definitions (auto-loaded at startup)
+│   ├── config.ts         # Guild admin configuration
+│   ├── dua.ts            # Contextual supplication retrieval
+│   ├── hadith.ts         # Verified hadith search
+│   ├── prayer.ts         # Prayer time lookup via Aladhan API
+│   ├── profile.ts        # User tier & rate-limit status
+│   └── setkey.ts         # BYOK API key registration
+├── events/               # discord.js Gateway event handlers
+│   ├── messageCreate.ts  # AI conversation & command routing
+│   ├── interactionCreate.ts # Slash command dispatcher
+│   ├── guildMemberAdd.ts # Welcome + invite tracking
+│   ├── guildMemberRemove.ts # Invite tracker cleanup
+│   └── guildUpdate.ts    # Boost-level tier upgrades
+├── services/             # Stateless background services
+│   ├── AIService.ts      # Multi-provider failover AI client
+│   ├── EncryptionService.ts # AES-256-CBC encrypt/decrypt helpers
+│   ├── KeyRingService.ts # Per-user BYOK credential store
+│   ├── MaintenanceService.ts # Cron-driven nightly archival
+│   ├── SkillLearningService.ts # Dynamic skill loader
+│   ├── TaskWorker.ts     # Heavy-task queue (ban, kick, etc.)
+│   └── TierService.ts    # Invite/boost tier resolver
+├── models/               # Mongoose schemas (DB shapes)
+├── skills/               # Dynamic skill JSON definitions
+├── website/              # Static frontend (this documentation)
+├── .env.example          # Template for environment variables
+├── tsconfig.json         # TypeScript compiler options
+└── package.json          # npm scripts &amp; dependency manifest</code></pre>
+
+                    <h3>Service Overview</h3>
+                    <div class="service-grid">
+                        <div class="service-card">
+                            <h4>AIService.ts</h4>
+                            <p>Manages a prioritised list of AI providers. On each request it tries providers in order; if one returns an error or rate-limit response, it seamlessly retries the next provider within the same response cycle.</p>
+                        </div>
+                        <div class="service-card">
+                            <h4>KeyRingService.ts</h4>
+                            <p>Reads and writes per-user BYOK credentials from MongoDB. Wraps EncryptionService so keys are never stored in plaintext. Exposes <code>getKey(userId)</code> and <code>setKey(userId, provider, key)</code>.</p>
+                        </div>
+                        <div class="service-card">
+                            <h4>EncryptionService.ts</h4>
+                            <p>Thin wrapper around Node.js's built-in <code>crypto</code> module. Implements AES-256-CBC encrypt/decrypt using the <code>ENCRYPTION_KEY</code> environment variable as the symmetric key.</p>
+                        </div>
+                        <div class="service-card">
+                            <h4>TierService.ts</h4>
+                            <p>Resolves a guild member's access tier by querying their invite count and checking whether they have an active server boost. Returns <code>"free"</code> or <code>"premium"</code> and the corresponding rate-limit quota.</p>
+                        </div>
+                        <div class="service-card">
+                            <h4>MaintenanceService.ts</h4>
+                            <p>Registers a <code>node-cron</code> job that runs nightly. Compresses interaction logs older than 30 days with <code>zlib</code> and moves them to a cold-storage collection, keeping MongoDB lean.</p>
+                        </div>
+                        <div class="service-card">
+                            <h4>TaskWorker.ts</h4>
+                            <p>Intercepts AI responses that contain <code>isHeavyTask: true</code> markers (ban, kick, role changes). Executes the moderation action after re-verifying that the calling user holds the appropriate Discord permissions.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ─── PREREQ: NODE ─── -->
+                <section id="prereq-node" class="docs-section">
+                    <h2>Prerequisite — Node.js &amp; TypeScript</h2>
+                    <p>You need <strong>Node.js v18 or higher</strong>. The bot uses ESM (<code>"type": "module"</code> in package.json) and optional chaining features that require a modern Node version.</p>
+
+                    <h3>Check your current version</h3>
+                    <pre><code>node --version   # must be >= v18.0.0
+npm --version    # must be >= 8.0.0</code></pre>
+
+                    <h3>Installing Node.js (if not installed)</h3>
+                    <p>The recommended way is via the official installer or a version manager:</p>
+
+                    <ul>
+                        <li><strong>Windows / macOS</strong> — Download the LTS installer from <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer" style="color:var(--primary)">nodejs.org</a>.</li>
+                        <li><strong>Linux (via nvm)</strong> — Use the Node Version Manager for clean version control:</li>
+                    </ul>
+                    <pre><code># Install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+# Restart your shell, then:
+nvm install --lts
+nvm use --lts</code></pre>
+
+                    <h3>Verifying TypeScript</h3>
+                    <p>TypeScript is bundled as a dev dependency and does not need to be installed globally. However, if you want to run <code>tsc</code> from your terminal directly:</p>
+                    <pre><code>npm install -g typescript
+tsc --version   # Should print 5.x.x</code></pre>
+
+                    <div class="docs-note">
+                        <p><strong>Note:</strong> The <code>npm start</code> script uses <code>ts-node</code> which compiles and runs TypeScript on-the-fly without a separate build step — ideal for development.</p>
+                    </div>
+                </section>
+
+                <!-- ─── PREREQ: DISCORD ─── -->
+                <section id="prereq-discord" class="docs-section">
+                    <h2>Prerequisite — Creating a Discord Application</h2>
+                    <p>Before running the bot, you need to create a Discord Application in the Developer Portal and obtain a bot token, application client ID, and invite URL.</p>
+
+                    <ul class="numbered-list">
+                        <li>
+                            <span class="num">1</span>
+                            <div>Go to <a href="https://discord.com/developers/applications" target="_blank" rel="noopener noreferrer" style="color:var(--primary)">discord.com/developers/applications</a> and sign in with your Discord account.</div>
+                        </li>
+                        <li>
+                            <span class="num">2</span>
+                            <div>Click <strong>"New Application"</strong> in the top-right corner. Give it a memorable name (e.g., <em>Islamic Bot</em>) and click <strong>Create</strong>.</div>
+                        </li>
+                        <li>
+                            <span class="num">3</span>
+                            <div>On the <strong>General Information</strong> page, copy the <strong>Application ID</strong>. This is your <code>CLIENT_ID</code> environment variable.</div>
+                        </li>
+                        <li>
+                            <span class="num">4</span>
+                            <div>Navigate to <strong>Bot</strong> in the left sidebar. Click <strong>"Add a Bot"</strong> → <strong>"Yes, do it!"</strong>. Then click <strong>"Reset Token"</strong> and copy the token. This is your <code>DISCORD_TOKEN</code>. <em>Never share this token.</em></div>
+                        </li>
+                        <li>
+                            <span class="num">5</span>
+                            <div>Scroll down the Bot page and enable these <strong>Privileged Gateway Intents</strong>:
+                                <ul style="margin-top:.5rem;margin-bottom:0">
+                                    <li><strong>Server Members Intent</strong> — required for invite tracking and tier upgrades.</li>
+                                    <li><strong>Message Content Intent</strong> — required for the AI to read message text.</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="num">6</span>
+                            <div>Navigate to <strong>OAuth2 → URL Generator</strong>. Select <strong>Scopes</strong>: <code>bot</code> and <code>applications.commands</code>. Under <strong>Bot Permissions</strong> select: <code>Administrator</code> (or at minimum: Send Messages, Read Message History, Manage Roles, Kick Members, Ban Members, Manage Guild, View Channels). Copy the generated URL and open it to invite the bot to your server.</div>
+                        </li>
+                        <li>
+                            <span class="num">7</span>
+                            <div>Create a dedicated text channel in your server for security alerts. Copy the <strong>Channel ID</strong> (right-click the channel → Copy Channel ID with Developer Mode enabled). This becomes <code>SECURITY_ALERT_CHANNEL_ID</code>.</div>
+                        </li>
+                        <li>
+                            <span class="num">8</span>
+                            <div>Copy your <strong>Server (Guild) ID</strong> (right-click the server icon → Copy Server ID). This is <code>SUPPORT_SERVER_ID</code> — used to restrict certain admin commands to your support guild only.</div>
+                        </li>
+                    </ul>
+
+                    <div class="alert-box alert-warn">
+                        <p>⚠️ <strong>Never commit your <code>DISCORD_TOKEN</code> to version control.</strong> If you accidentally expose it, immediately go back to the Bot page and click <strong>Reset Token</strong>.</p>
+                    </div>
+                </section>
+
+                <!-- ─── PREREQ: MONGO ─── -->
+                <section id="prereq-mongo" class="docs-section">
+                    <h2>Prerequisite — MongoDB Setup</h2>
+                    <p>The bot uses MongoDB to persist server configurations, invite records, user profiles, BYOK credentials, and rate-limit data. You can run it locally or use the free MongoDB Atlas cloud service.</p>
+
+                    <h3>Option A — Local MongoDB (Development)</h3>
+                    <pre><code># macOS (Homebrew)
+brew tap mongodb/brew
+brew install mongodb-community@7.0
+brew services start mongodb-community@7.0
+
+# Ubuntu / Debian
+curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+sudo apt-get update && sudo apt-get install -y mongodb-org
+sudo systemctl start mongod
+
+# Windows
+# Download installer from https://www.mongodb.com/try/download/community</code></pre>
+
+                    <p>Once running, your connection string is:</p>
+                    <pre><code>MONGODB_URI=mongodb://localhost:27017/islamic-bot</code></pre>
+
+                    <h3>Option B — MongoDB Atlas (Production Recommended)</h3>
+                    <ul class="numbered-list">
+                        <li><span class="num">1</span><div>Go to <a href="https://cloud.mongodb.com" target="_blank" rel="noopener noreferrer" style="color:var(--primary)">cloud.mongodb.com</a> and create a free account.</div></li>
+                        <li><span class="num">2</span><div>Create a new <strong>Project</strong>, then click <strong>Build a Database</strong>. Choose the <strong>Free (M0)</strong> shared cluster.</div></li>
+                        <li><span class="num">3</span><div>Create a <strong>Database User</strong> with a strong password (not your login password). Keep note of username and password.</div></li>
+                        <li><span class="num">4</span><div>Under <strong>Network Access</strong>, add IP <code>0.0.0.0/0</code> (allows all) for a VPS, or your specific VPS IP for better security.</div></li>
+                        <li><span class="num">5</span><div>Click <strong>Connect → Drivers</strong>, select <strong>Node.js</strong>, and copy the connection string. Replace <code>&lt;password&gt;</code> with your database user's password.</div></li>
+                    </ul>
+                    <pre><code>MONGODB_URI=mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/islamic-bot?retryWrites=true&w=majority</code></pre>
+                </section>
+
+                <!-- ─── PREREQ: REDIS ─── -->
+                <section id="prereq-redis" class="docs-section">
+                    <h2>Prerequisite — Redis Setup</h2>
+                    <p>Redis is used for the <strong>sliding-window rate limiter</strong>. Every command execution checks and increments a Redis key before hitting the AI APIs.</p>
+
+                    <h3>Option A — Local Redis (Development)</h3>
+                    <pre><code># macOS (Homebrew)
+brew install redis
+brew services start redis
+
+# Ubuntu / Debian
+sudo apt-get update && sudo apt-get install redis-server
+sudo systemctl start redis-server
+sudo systemctl enable redis-server
+
+# Windows
+# Use Redis for Windows from https://github.com/microsoftarchive/redis/releases
+# Or run via Docker:
+docker run -d -p 6379:6379 redis:alpine</code></pre>
+
+                    <p>Verify it's running:</p>
+                    <pre><code>redis-cli ping   # Should respond: PONG</code></pre>
+                    <pre><code>REDIS_URL=redis://localhost:6379</code></pre>
+
+                    <h3>Option B — Redis Cloud (Production)</h3>
+                    <ul class="numbered-list">
+                        <li><span class="num">1</span><div>Create a free account at <a href="https://redis.io/try-free" target="_blank" rel="noopener noreferrer" style="color:var(--primary)">redis.io/try-free</a>.</div></li>
+                        <li><span class="num">2</span><div>Create a new database and copy the <strong>Public endpoint</strong> and <strong>Password</strong>.</div></li>
+                    </ul>
+                    <pre><code>REDIS_URL=redis://:yourpassword@redis-12345.c1.us-east-1-2.ec2.cloud.redislabs.com:12345</code></pre>
+                </section>
+
+                <!-- ─── PREREQ: AI KEYS ─── -->
+                <section id="prereq-ai" class="docs-section">
+                    <h2>Prerequisite — AI API Keys</h2>
+                    <p>The bot supports six AI providers through a multi-key rotation format. You only need at least <strong>one</strong>, but adding multiple providers activates the automatic failover system for maximum uptime. Keys are set as a comma-separated list in the <code>API_KEYS</code> variable.</p>
+
+                    <pre><code>API_KEYS=groq:gsk_...,gemini:AIza...,cerebras:csk_...</code></pre>
+
+                    <div class="provider-grid">
+                        <div class="provider-card">
+                            <div class="pname">Groq</div>
+                            <a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer" class="purl">console.groq.com/keys</a>
+                            <p>Extremely fast inference. Excellent primary choice. Free tier available with generous limits. Key prefix: <code>gsk_</code></p>
+                        </div>
+                        <div class="provider-card">
+                            <div class="pname">Google Gemini</div>
+                            <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" class="purl">aistudio.google.com/app/apikey</a>
+                            <p>Google's Gemini models. Free tier via AI Studio. Key prefix: <code>AIza</code></p>
+                        </div>
+                        <div class="provider-card">
+                            <div class="pname">Cerebras</div>
+                            <a href="https://cloud.cerebras.ai" target="_blank" rel="noopener noreferrer" class="purl">cloud.cerebras.ai</a>
+                            <p>Ultra-fast chip-native inference. Free tier during beta. Key prefix: <code>csk_</code></p>
+                        </div>
+                        <div class="provider-card">
+                            <div class="pname">SambaNova</div>
+                            <a href="https://cloud.sambanova.ai" target="_blank" rel="noopener noreferrer" class="purl">cloud.sambanova.ai</a>
+                            <p>Hardware-accelerated inference. Free API tier. Good as a secondary failover option.</p>
+                        </div>
+                        <div class="provider-card">
+                            <div class="pname">Together AI</div>
+                            <a href="https://api.together.xyz/settings/api-keys" target="_blank" rel="noopener noreferrer" class="purl">api.together.xyz</a>
+                            <p>Hosts a wide range of open-source models. $5 free credit on sign-up.</p>
+                        </div>
+                        <div class="provider-card">
+                            <div class="pname">OpenRouter</div>
+                            <a href="https://openrouter.ai/keys" target="_blank" rel="noopener noreferrer" class="purl">openrouter.ai/keys</a>
+                            <p>Unified API for 100+ models. Free models available. Also used for BYOK. Key prefix: <code>sk-or-</code></p>
+                        </div>
+                    </div>
+
+                    <div class="docs-note">
+                        <p><strong>Recommended minimum configuration:</strong> Add at least Groq + Gemini for production reliability. The failover triggers automatically when one provider returns a 429, 500, or network error.</p>
+                    </div>
+                </section>
+
+                <!-- ─── INSTALLATION ─── -->
+                <section id="install" class="docs-section">
+                    <h2>Installation</h2>
+                    <p>Once all prerequisites are met, follow these steps to get the bot installed and running on your system.</p>
+
+                    <h3>Step 1 — Clone the Repository</h3>
+                    <pre><code>git clone https://github.com/SEJED-DEV/digital-akhi-bot.git
+cd digital-akhi-bot</code></pre>
+
+                    <h3>Step 2 — Install npm Dependencies</h3>
+                    <pre><code>npm install</code></pre>
+                    <p>This will install all runtime and dev dependencies listed in <code>package.json</code> including <code>discord.js</code>, <code>mongoose</code>, <code>ioredis</code>, <code>ts-node</code>, and more.</p>
+
+                    <h3>Step 3 — Create Your Environment File</h3>
+                    <pre><code>cp .env.example .env</code></pre>
+                    <p>Open <code>.env</code> in your editor and fill in every variable. See the full <a href="#env" style="color:var(--primary)">Environment Variables</a> reference below for descriptions of each field.</p>
+
+                    <h3>Step 4 — Verify Connections</h3>
+                    <p>Before deploying commands, confirm MongoDB and Redis are reachable. A quick sanity check:</p>
+                    <pre><code># Test MongoDB connection (requires mongosh installed)
+mongosh "$MONGODB_URI" --eval "db.runCommand({ping:1})"
+
+# Test Redis
+redis-cli -u "$REDIS_URL" ping</code></pre>
+                </section>
+
+                <!-- ─── ENV VARS ─── -->
+                <section id="env" class="docs-section">
+                    <h2>Environment Variables — Full Reference</h2>
+                    <p>All configuration is passed through environment variables loaded from your <code>.env</code> file via <code>dotenv</code>. Below is the complete reference table:</p>
+
+                    <table>
+                        <thead>
+                            <tr><th>Variable</th><th>Required</th><th>Default</th><th>Description</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>DISCORD_TOKEN</code></td><td>✅ Yes</td><td>—</td>
+                                <td>Your bot's secret token from the Discord Developer Portal. Used to authenticate the WebSocket gateway connection.</td>
+                            </tr>
+                            <tr>
+                                <td><code>CLIENT_ID</code></td><td>✅ Yes</td><td>—</td>
+                                <td>Your application's Client / Application ID. Required by the <code>deploy-commands.js</code> script to register slash commands globally.</td>
+                            </tr>
+                            <tr>
+                                <td><code>SUPPORT_SERVER_ID</code></td><td>✅ Yes</td><td>—</td>
+                                <td>The Discord Guild ID of your support / admin server. Certain privilege-escalation commands are restricted to this guild only.</td>
+                            </tr>
+                            <tr>
+                                <td><code>SECURITY_ALERT_CHANNEL_ID</code></td><td>✅ Yes</td><td>—</td>
+                                <td>Channel ID where the bot posts security events (e.g., failed admin verification, suspected prompt injections).</td>
+                            </tr>
+                            <tr>
+                                <td><code>MONGODB_URI</code></td><td>✅ Yes</td><td><code>mongodb://localhost:27017/islamic-bot</code></td>
+                                <td>Full MongoDB connection string. Supports both local instances and Atlas cloud clusters.</td>
+                            </tr>
+                            <tr>
+                                <td><code>REDIS_URL</code></td><td>✅ Yes</td><td><code>redis://localhost:6379</code></td>
+                                <td>Redis connection URL. Used by the sliding-window rate limiter. Supports password-protected and TLS connections.</td>
+                            </tr>
+                            <tr>
+                                <td><code>ENCRYPTION_KEY</code></td><td>✅ Yes</td><td>—</td>
+                                <td>A <strong>exactly 32 characters</strong> random string used as the AES-256 symmetric encryption key for BYOK API keys. Generate with: <code>node -e "console.log(require('crypto').randomBytes(16).toString('hex'))"</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>API_KEYS</code></td><td>✅ Yes (min 1)</td><td>—</td>
+                                <td>Comma-separated list of AI provider keys in <code>provider:key</code> format. Supported providers: <code>groq</code>, <code>gemini</code>, <code>cerebras</code>, <code>sambanova</code>, <code>together</code>, <code>openrouter</code>. Example: <code>groq:gsk_abc,gemini:AIza_xyz</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>NEXT_PUBLIC_SUPPORT_SERVER_INVITE</code></td><td>❌ No</td><td>—</td>
+                                <td>Invite link for your Cortex HQ / support Discord server. Embedded in bot error messages to direct users for help.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Generating a Secure ENCRYPTION_KEY</h3>
+                    <pre><code># Option 1 — Node.js one-liner
+node -e "console.log(require('crypto').randomBytes(16).toString('hex'))"
+
+# Option 2 — OpenSSL
+openssl rand -hex 16
+
+# Option 3 — Python
+python3 -c "import secrets; print(secrets.token_hex(16))"</code></pre>
+                    <div class="alert-box alert-warn">
+                        <p>⚠️ The output of the above commands is 32 hex characters = 16 bytes = 128-bit key. AES-256 requires a 32-byte key. The internal implementation interprets the 32-character hex string as a 32-byte buffer. Do not truncate or pad this value.</p>
+                    </div>
+                </section>
+
+                <!-- ─── DEPLOY COMMANDS ─── -->
+                <section id="commands-deploy" class="docs-section">
+                    <h2>Deploying Slash Commands to Discord</h2>
+                    <p>Discord requires slash commands to be registered explicitly via the REST API before they appear in servers. This is a <strong>one-time action</strong> (or repeat it after adding new commands).</p>
+
+                    <h3>Step 1 — Build the TypeScript Source</h3>
+                    <pre><code>npm run build</code></pre>
+                    <p>This runs <code>tsc</code> and compiles all <code>.ts</code> files in <code>commands/</code>, <code>events/</code>, and <code>services/</code> into JavaScript in the <code>dist/</code> directory.</p>
+
+                    <h3>Step 2 — Run the Deployment Script</h3>
+                    <pre><code>node dist/deploy-commands.js
+# or, using the npm alias:
+npm run deploy</code></pre>
+                    <p>This registers all commands globally. Global registration can take up to <strong>1 hour</strong> to propagate to all Discord servers. For instant updates during development, the script can be modified to target a specific Guild ID.</p>
+
+                    <div class="docs-note">
+                        <p><strong>Re-run this script any time you add, rename, or modify a slash command's options.</strong> Discord will not automatically update the command schema — you must re-register.</p>
+                    </div>
+
+                    <h3>Verifying Registration</h3>
+                    <p>After deployment, type <code>/</code> in any server where the bot is present. You should see all commands (hadith, dua, prayer, profile, setkey, config) appear in the autocomplete popup within 1 hour.</p>
+                </section>
+
+                <!-- ─── RUNNING ─── -->
+                <section id="run" class="docs-section">
+                    <h2>Running the Bot</h2>
+
+                    <h3>Development Mode (ts-node, hot-friendly)</h3>
+                    <p>Runs TypeScript directly without a compile step. Best for active development:</p>
+                    <pre><code>npm start
+# Equivalent to: ts-node index.ts</code></pre>
+                    <p>You should see output similar to:</p>
+                    <pre><code>Connected to MongoDB
+Logged in as IslamicBot#1234!</code></pre>
+
+                    <h3>Production Mode (compiled JavaScript)</h3>
+                    <p>For a VPS or cloud server, always run compiled code for better performance:</p>
+                    <pre><code>npm run build
+node dist/index.js</code></pre>
+
+                    <h3>Running as a Background Service (Linux — systemd)</h3>
+                    <p>Create a systemd service to keep the bot running after server reboots:</p>
+                    <pre><code>sudo nano /etc/systemd/system/islamicbot.service</code></pre>
+                    <pre><code>[Unit]
+Description=Islamic Community Discord Bot
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/digital-akhi-bot
+ExecStart=/usr/bin/node /home/ubuntu/digital-akhi-bot/dist/index.js
+Restart=on-failure
+RestartSec=10
+EnvironmentFile=/home/ubuntu/digital-akhi-bot/.env
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+                    <pre><code>sudo systemctl daemon-reload
+sudo systemctl enable islamicbot
+sudo systemctl start islamicbot
+sudo systemctl status islamicbot   # Check it's active (running)</code></pre>
+
+                    <h3>Running with Docker (Optional)</h3>
+                    <pre><code># Build image
+docker build -t islamic-bot .
+
+# Run with environment file
+docker run -d --name islamic-bot --env-file .env islamic-bot</code></pre>
+                </section>
+
+                <!-- ─── COMMAND REFERENCE ─── -->
+                <section id="commands-ref" class="docs-section">
+                    <h2>Slash Command Reference</h2>
+                    <p>The following commands are registered by default. All commands respect the user's active access tier and rate-limit window.</p>
+
+                    <div class="cmd-ref-grid">
+                        <div class="cmd-card">
+                            <h4>/hadith</h4>
+                            <p>Retrieves a verified Hadith matching the user's query. Response includes the text, source collection, hadith number, and authenticity grading (Sahih, Hasan, Da'if, or Mawdu').</p>
+                            <div class="params">
+                                <span class="param">query: string (required)</span>
+                            </div>
+                        </div>
+                        <div class="cmd-card">
+                            <h4>/dua</h4>
+                            <p>Returns a contextually appropriate supplication (Dua). The AI interprets the situation described by the user and selects the most relevant Du'a, with Arabic text, transliteration, and translation.</p>
+                            <div class="params">
+                                <span class="param">situation: string (required)</span>
+                            </div>
+                        </div>
+                        <div class="cmd-card">
+                            <h4>/prayer</h4>
+                            <p>Fetches the five daily prayer times for a specified city using the open Aladhan API. Times are calculated for the current day in the city's local timezone.</p>
+                            <div class="params">
+                                <span class="param">city: string (required)</span>
+                                <span class="param">country: string (optional)</span>
+                            </div>
+                        </div>
+                        <div class="cmd-card">
+                            <h4>/profile</h4>
+                            <p>Displays the calling user's server profile: current access tier (Free/Premium), number of valid invites, current request usage and quota, and their tier unlock progress.</p>
+                            <div class="params">
+                                <span class="param">user: mention (optional)</span>
+                            </div>
+                        </div>
+                        <div class="cmd-card">
+                            <h4>/setkey</h4>
+                            <p>Registers a personal BYOK API key. The key is encrypted at rest using AES-256-CBC before being stored in MongoDB. Once set, the bot uses this key for all of the user's requests.</p>
+                            <div class="params">
+                                <span class="param">provider: choice (required)</span>
+                                <span class="param">key: string (required)</span>
+                            </div>
+                        </div>
+                        <div class="cmd-card">
+                            <h4>/config</h4>
+                            <p>Server administrator command. Manage settings: welcome, automod, server stats, and shared BYOK. Requires <code>Administrator</code> permission.</p>
+                            <div class="params">
+                                <span class="param">subcommand: welcome | automod | ...</span>
+                            </div>
+                        </div>
+                        <div class="cmd-card">
+                            <h4>/modstats</h4>
+                            <p>Displays moderation performance metrics and leaderboards. Tracks warnings, mutes, kicks, and bans globally per guild.</p>
+                            <div class="params">
+                                <span class="param">moderator: user (optional)</span>
+                            </div>
+                        </div>
+                        <div class="cmd-card">
+                            <h4>/lock /unlock</h4>
+                            <p>Emergency channel controls. Instantly freezes or restores messaging permissions for the <code>@everyone</code> role.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ─── AUTOMOD ─── -->
+                <section id="automod" class="docs-section">
+                    <h2>AutoMod System</h2>
+                    <p>The <strong>AutoModService</strong> provides proactive protection against common server threats. It can be configured via <code>/config automod</code>.</p>
+                    <h3>Available Modules</h3>
+                    <ul>
+                        <li><strong>Anti-Spam</strong> — Detects message bursts (default: 5 messages in 10s). Offenders are automatically timed out for 10 minutes.</li>
+                        <li><strong>Anti-Raid</strong> — Monitors join velocity (default: 10 joins in 30s). Triggers an alert and can enable emergency lockdowns.</li>
+                        <li><strong>Word Filter</strong> — Customizable list of forbidden words. Uses a normalization engine to detect leetspeak and unicode bypass attempts.</li>
+                    </ul>
+                    <div class="alert-box alert-success">
+                        <p>✅ **Normalization:** The filter automatically converts "5pam" to "spam" and ignores special characters to prevent easy bypasses.</p>
+                    </div>
+                </section>
+
+                <!-- ─── MODSTATS ─── -->
+                <section id="modstats" class="docs-section">
+                    <h2>Moderator Stats & Performance</h2>
+                    <p>Accountability is key to a healthy Ummah. The bot automatically tracks every formal moderation action taken through its commands.</p>
+                    <h3>Tracked Actions</h3>
+                    <ul>
+                        <li><strong>Warn</strong> — logged via <code>/warn</code>.</li>
+                        <li><strong>Mute</strong> — logged via <code>/mute</code>.</li>
+                        <li><strong>Kick/Ban</strong> — logged via <code>/kick</code>, <code>/ban</code>, or AI-triggered heavy tasks.</li>
+                    </ul>
+                    <p>Use <code>/modstats</code> to view the server leaderboard or <code>/modstats @moderator</code> for a detailed breakdown of a specific team member's performance.</p>
+                </section>
+
+                <!-- ─── TIERS ─── -->
+                <section id="tiers" class="docs-section">
+                    <h2>Tier System</h2>
+                    <p>The bot operates on a two-tier access model resolved dynamically at the time of each request by <code>TierService.ts</code>:</p>
+
+                    <table>
+                        <thead><tr><th>Tier</th><th>Requirement</th><th>Request Quota</th><th>Context Window</th><th>Support</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Free</strong></td>
+                                <td>Default for all members</td>
+                                <td>20 requests / 6 hours</td>
+                                <td>4,000 words context</td>
+                                <td>Community channels</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Premium</strong></td>
+                                <td>30 valid server invites <em>or</em> 2 active Nitro boosts</td>
+                                <td>50 requests / 6 hours</td>
+                                <td>32,000 words context</td>
+                                <td>Priority support channel</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SuperPremium</strong></td>
+                                <td>50 valid server invites <em>&</em> Support server join</td>
+                                <td>100 requests / 6 hours</td>
+                                <td>128,000 words context</td>
+                                <td>Direct developer support</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="alert-box alert-info">
+                        <p>ℹ️ **BYOK Bonus:** Users who configure their own API key via `/setkey` bypass all rate limits entirely! Their request quota becomes unlimited.</p>
+                    </div>
+
+                    <h3>How Tier Resolution Works</h3>
+                    <ul>
+                        <li>On every command, <code>TierService.resolveUser(guildId, userId)</code> is called.</li>
+                        <li>It queries the invite tracking collection in MongoDB for the user's invite count.</li>
+                        <li>It queries the guild's boost count via the Discord API.</li>
+                        <li>If either threshold is met, <code>"premium"</code> is returned with a 50-request quota; otherwise <code>"free"</code> with 20.</li>
+                        <li>The quota is checked against the Redis sliding-window key <code>ratelimit:{userId}</code> before processing the request.</li>
+                    </ul>
+
+                    <h3>Invite Tracking</h3>
+                    <p>The <code>guildMemberAdd</code> event captures who invited a new member by diffing the guild's invite list before and after the join. Invite counts are stored in MongoDB and updated in real-time. The <code>guildMemberRemove</code> event decrements the invite count if the member leaves within the tracking window to prevent gaming the system.</p>
+                </section>
+
+                <!-- ─── BYOK ─── -->
+                <section id="byok" class="docs-section">
+                    <h2>BYOK — Bring Your Own Key</h2>
+                    <p>BYOK lets individual users or server administrators bypass the bot's shared AI quota by registering their own API credentials. This is the most powerful feature for heavy users who need unrestricted access.</p>
+
+                    <div class="alert-box alert-warn">
+                        <p>⚠️ **48-Hour Trial Policy:** New users can use the bot's default API for 48 hours. After this trial period, you MUST add your own API key using `/setkey` to continue using AI features.</p>
+                    </div>
+
+                    <h3>How It Works — Step by Step</h3>
+                    <ul class="numbered-list">
+                        <li><span class="num">1</span><div>User runs <code>/setkey provider: openrouter key: sk-or-xxxx</code>. The key string is sent to the bot via Discord's encrypted interaction payload.</div></li>
+                        <li><span class="num">2</span><div><code>KeyRingService.setKey(userId, provider, rawKey)</code> calls <code>EncryptionService.encrypt(rawKey)</code>. This generates a random IV, runs AES-256-CBC with your <code>ENCRYPTION_KEY</code>, and returns a Base64-encoded ciphertext string.</div></li>
+                        <li><span class="num">3</span><div>The ciphertext (never the plaintext) is written to MongoDB under the user's document. The original raw key is never logged or stored.</div></li>
+                        <li><span class="num">4</span><div>On the user's next AI request, <code>KeyRingService.getKey(userId)</code> is called. It reads the ciphertext from MongoDB, decrypts it in memory using <code>EncryptionService.decrypt()</code>, and passes the plaintext key to the AI HTTP request.</div></li>
+                        <li><span class="num">5</span><div>After the HTTP call completes, the decrypted key goes out of scope and is garbage-collected. It is never written to disk, logs, or environment state.</div></li>
+                        <li><span class="num">6</span><div>Users with a BYOK key active are exempt from the standard rate-limit quota — their key's own provider limits apply instead.</div></li>
+                    </ul>
+
+                    <h3>Removing a BYOK Key</h3>
+                    <p>Users can remove their stored key at any time using the command:</p>
+                    <pre><code>/removekey</code></pre>
+                    <p>This permanently deletes the encrypted credential document from MongoDB.</p>
+                </section>
+
+                <!-- ─── SECURITY ─── -->
+                <section id="security" class="docs-section">
+                    <h2>Security Model</h2>
+                    <p>The bot is designed with a zero-trust philosophy. Every request is verified independently regardless of who appears to be sending it.</p>
+
+                    <h3>Prompt Sandboxing</h3>
+                    <p>All user-provided text is wrapped in a triple-quoted sandboxing template before being forwarded to the AI provider. This prevents users from injecting instructions that try to override the bot's system prompt or extract internal configurations.</p>
+                    <pre><code>System: You are the Islamic Community Bot...
+[INSTRUCTIONS]
+...
+[END INSTRUCTIONS]
+
+User input: """
+{user_message}
+"""</code></pre>
+                    <p>The AI is instructed to only respond to content within the triple quotes as user context, never as additional instructions. Attempts to escape the sandbox are flagged and sent to the <code>SECURITY_ALERT_CHANNEL_ID</code>.</p>
+
+                    <h3>Heavy Task Interception (<code>isHeavyTask</code>)</h3>
+                    <p>When the AI determines a moderation action is warranted (ban, kick, role change), it returns a structured JSON response containing <code>isHeavyTask: true</code> and a payload describing the action. The <code>TaskWorker</code> service intercepts this, <strong>re-verifies</strong> the requesting user's Discord permissions independently via the Guild API, and only then executes the action. The AI itself cannot trigger moderation — it can only request it.</p>
+
+                    <h3>Admin Command Gating</h3>
+                    <p>The <code>/config</code> command and any sub-actions that modify guild settings require the caller to hold the <code>Manage Guild</code> or <code>Administrator</code> Discord permission. This is checked server-side via <code>interaction.memberPermissions</code>, not by the AI.</p>
+
+                    <h3>Support-Server Restriction</h3>
+                    <p>Certain developer and maintenance commands are restricted to the guild specified in <code>SUPPORT_SERVER_ID</code>. Attempts to call them from external servers silently fail.</p>
+                </section>
+
+                <!-- ─── DATA LIFECYCLE ─── -->
+                <section id="lifecycle" class="docs-section">
+                    <h2>Data Lifecycle &amp; Archival</h2>
+                    <p>The <code>MaintenanceService</code> registers a <code>node-cron</code> job that runs once every 24 hours (typically at 02:00 UTC). On each run it:</p>
+                    <ul>
+                        <li>Queries the <code>interaction_logs</code> MongoDB collection for documents older than 30 days.</li>
+                        <li>Serialises each document to JSON, compresses it with Node.js's built-in <code>zlib.gzip()</code>, and writes the compressed buffer to the <code>cold_storage</code> collection as a Binary field.</li>
+                        <li>Deletes the original documents from <code>interaction_logs</code>.</li>
+                    </ul>
+                    <p>This keeps the hot MongoDB collection small and query-efficient while preserving a compressed historical archive. Cold storage documents can be decompressed on demand with <code>zlib.gunzip()</code>.</p>
+
+                    <div class="alert-box alert-info">
+                        <p>ℹ️ If you are self-hosting, you may wish to schedule your own MongoDB Atlas backups separately. The built-in archival is for query performance, not a full backup solution.</p>
+                    </div>
+                </section>
+
+                <!-- ─── CONTRIBUTING ─── -->
+                <section id="contributing" class="docs-section">
+                    <h2>Contribution Guide</h2>
+                    <p>We actively welcome contributions — bug fixes, new commands, performance improvements, and documentation updates are all appreciated.</p>
+
+                    <h3>Setting Up the Development Environment</h3>
+                    <pre><code># 1. Fork the repository on GitHub, then clone your fork:
+git clone https://github.com/YOUR_USERNAME/digital-akhi-bot.git
+cd digital-akhi-bot
+
+# 2. Add the upstream remote so you can stay up to date:
+git remote add upstream https://github.com/SEJED-DEV/digital-akhi-bot.git
+
+# 3. Install dependencies and set up your .env:
+npm install
+cp .env.example .env
+# Fill in .env values...
+
+# 4. Create a feature branch (never commit directly to main):
+git checkout -b feature/your-feature-name</code></pre>
+
+                    <h3>Code Style</h3>
+                    <ul>
+                        <li>All source files use <strong>TypeScript</strong>. No plain <code>.js</code> files in <code>commands/</code>, <code>events/</code>, or <code>services/</code>.</li>
+                        <li>Use <strong>ESM imports</strong> (<code>import</code> / <code>export</code>) — no <code>require()</code>.</li>
+                        <li>Export a named <code>data</code> (SlashCommandBuilder) and <code>execute</code> function from every command file so the auto-loader can pick it up.</li>
+                        <li>Keep functions small and single-purpose. Extract repeated logic into <code>services/</code>.</li>
+                    </ul>
+
+                    <h3>Pull Request Checklist</h3>
+                    <ul>
+                        <li>✅ Code compiles without errors (<code>npm run build</code>).</li>
+                        <li>✅ Bot starts without errors (<code>npm start</code>).</li>
+                        <li>✅ The new feature/fix is documented in the PR description.</li>
+                        <li>✅ Any new environment variables are added to <code>.env.example</code>.</li>
+                        <li>✅ PR targets the <code>main</code> branch.</li>
+                    </ul>
+
+                    <pre><code># After making your changes, push and open a PR:
+git add .
+git commit -m "feat: describe your change clearly"
+git push origin feature/your-feature-name</code></pre>
+                    <p>Then open a Pull Request on GitHub from your fork's branch to <code>SEJED-DEV/digital-akhi-bot:main</code>.</p>
+                </section>
+
+                <!-- ─── ADDING COMMANDS ─── -->
+                <section id="adding-commands" class="docs-section">
+                    <h2>Adding a New Slash Command</h2>
+                    <p>The command loader in <code>index.ts</code> automatically discovers any <code>.ts</code> or <code>.js</code> file in the <code>commands/</code> directory that exports both a <code>data</code> property and an <code>execute</code> function. Adding a new command is as simple as creating one file.</p>
+
+                    <h3>Template</h3>
+                    <pre><code>// commands/mycommand.ts
+import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
+
+export const data = new SlashCommandBuilder()
+    .setName('mycommand')
+    .setDescription('Brief description of what your command does')
+    .addStringOption(option =>
+        option
+            .setName('input')
+            .setDescription('The user input for your command')
+            .setRequired(true)
+    );
+
+export async function execute(interaction: ChatInputCommandInteraction) {
+    await interaction.deferReply();
+
+    const input = interaction.options.getString('input', true);
+
+    // Your command logic here...
+    const result = `You said: ${input}`;
+
+    await interaction.editReply({ content: result });
+}</code></pre>
+
+                    <h3>After Creating Your Command File</h3>
+                    <pre><code># 1. Rebuild to compile the new file
+npm run build
+
+# 2. Re-register slash commands with Discord
+npm run deploy
+
+# 3. Restart the bot
+npm start</code></pre>
+
+                    <div class="docs-note">
+                        <p><strong>Note:</strong> Use <code>deferReply()</code> for any command that makes network calls. Discord requires a response within 3 seconds; <code>deferReply()</code> extends this to 15 minutes while you fetch data.</p>
+                    </div>
+                </section>
+
+                <!-- ─── TROUBLESHOOTING ─── -->
+                <section id="troubleshoot" class="docs-section">
+                    <h2>Troubleshooting</h2>
+
+                    <h3>Bot fails to start: "Used disallowed intents"</h3>
+                    <p><strong>Cause:</strong> The bot requests <code>GuildMembers</code> or <code>MessageContent</code> intents but they are not enabled in the Developer Portal.</p>
+                    <p><strong>Fix:</strong> Go to <a href="https://discord.com/developers/applications" target="_blank" rel="noopener noreferrer" style="color:var(--primary)">discord.com/developers/applications</a> → Your App → Bot → Privileged Gateway Intents → enable <strong>Server Members Intent</strong> and <strong>Message Content Intent</strong>.</p>
+
+                    <h3>Bot starts but slash commands don't appear</h3>
+                    <p><strong>Cause:</strong> Commands have not been registered yet, or Discord's global propagation delay (up to 1 hour) has not completed.</p>
+                    <p><strong>Fix:</strong> Run <code>npm run build &amp;&amp; npm run deploy</code>. Wait up to 60 minutes. For instant testing, modify <code>deploy-commands.js</code> to register to a specific Guild ID using <code>rest.put(Routes.applicationGuildCommands(clientId, guildId), ...)</code>.</p>
+
+                    <h3>MongooseServerSelectionError: connection refused</h3>
+                    <p><strong>Cause:</strong> MongoDB is not running or <code>MONGODB_URI</code> is incorrect.</p>
+                    <p><strong>Fix:</strong> Start MongoDB locally (<code>brew services start mongodb-community</code> / <code>sudo systemctl start mongod</code>), or verify your Atlas connection string and IP whitelist.</p>
+
+                    <h3>AI requests return "No available providers"</h3>
+                    <p><strong>Cause:</strong> All keys in <code>API_KEYS</code> are invalid or exhausted.</p>
+                    <p><strong>Fix:</strong> Check the <code>API_KEYS</code> format (<code>provider:key,provider:key</code>). Verify each key is valid by testing it directly with the provider's API playground. Add a backup provider.</p>
+
+                    <h3>BYOK key returns "Decryption failed"</h3>
+                    <p><strong>Cause:</strong> The <code>ENCRYPTION_KEY</code> in your <code>.env</code> was changed after a key was stored, making existing ciphertext undecryptable.</p>
+                    <p><strong>Fix:</strong> Never change <code>ENCRYPTION_KEY</code> after keys are stored. If you must change it, have all users re-run <code>/setkey</code> to re-encrypt their credentials with the new key.</p>
+
+                    <h3>Rate limit errors: user gets "You have reached your limit"</h3>
+                    <p><strong>Cause:</strong> Expected behaviour — the user's 6-hour sliding window is exhausted.</p>
+                    <p><strong>Fix for users:</strong> Wait for the window to reset, gain Premium tier (30 invites / 2 boosts), or register a BYOK key with <code>/setkey</code>.</p>
+                    <p><strong>Fix for self-hosters:</strong> Adjust the quota constants in <code>services/TierService.ts</code> to suit your server's usage patterns.</p>
+
+                    <h3>TypeScript compile errors after pulling updates</h3>
+                    <pre><code>npm install        # Install any new dependencies
+npm run build      # Recompile</code></pre>
+
+                    <h3>Redis connection refused</h3>
+                    <pre><code># Check Redis is running
+redis-cli ping     # Should return PONG
+
+# If not running:
+sudo systemctl start redis-server   # Linux
+brew services start redis           # macOS</code></pre>
+                </section>
+
+                <!-- ─── FAQ ─── -->
+                <section id="faq" class="docs-section">
+                    <h2>Frequently Asked Questions</h2>
+
+                    <h3>General</h3>
+
+                    <h4 style="color:var(--white);font-weight:700;margin-top:1.5rem;margin-bottom:.5rem">Is this bot free to use?</h4>
+                    <p>Yes. The bot itself is 100% free and open-source (AGPL-3.0 License). You can self-host it at no cost beyond your server's infrastructure costs (a small VPS typically costs $4–6/month). The AI providers also have free tiers — Groq and Cerebras both offer generous free limits that comfortably cover a medium-sized Discord server.</p>
+
+                    <h4 style="color:var(--white);font-weight:700;margin-top:1.5rem;margin-bottom:.5rem">Can I use this bot on multiple servers?</h4>
+                    <p>Yes. A single bot instance can serve multiple Discord guilds simultaneously. Each guild has its own configuration stored in MongoDB. There is no hard limit on the number of guilds; the limiting factor is your server's CPU, RAM, and AI API quota.</p>
+
+                    <h4 style="color:var(--white);font-weight:700;margin-top:1.5rem;margin-bottom:.5rem">What happens if all my AI providers are down?</h4>
+                    <p>The <code>AIService</code> cycles through all configured providers. If every provider returns an error, the bot responds with a graceful "Service temporarily unavailable" message in Discord rather than crashing. The bot itself remains online — only the AI-powered responses are affected. Non-AI commands like <code>/prayer</code> continue to work normally as they use the Aladhan API directly.</p>
+
+                    <h4 style="color:var(--white);font-weight:700;margin-top:1.5rem;margin-bottom:.5rem">Can the bot ban/kick members?</h4>
+                    <p>Only in a tightly controlled way. The AI can <em>suggest</em> a moderation action, which is represented as a structured JSON payload with <code>isHeavyTask: true</code>. Before any action is taken, <code>TaskWorker.ts</code> independently verifies that (a) the requesting user actually holds the required Discord permissions, and (b) the target user is not protected (e.g., has a higher role). The AI cannot independently trigger moderation — it can only request it, and the request is always verified by code, not by the AI itself.</p>
+
+                    <h4 style="color:var(--white);font-weight:700;margin-top:1.5rem;margin-bottom:.5rem">Does the bot store my messages?</h4>
+                    <p>Interaction logs (which may include message content) are stored in "hot" MongoDB storage for up to 30 days for the purposes of rate-limit tracking and service quality improvement. After 30 days, logs are <code>zlib</code>-compressed and moved to cold storage. They are never sold or shared with third parties. Users may request deletion at any time via the support server. See the full <a href="privacy.html" style="color:var(--primary)">Privacy Policy</a> for details.</p>
+
+                    <h3 style="margin-top:2.5rem">Self-Hosting</h3>
+
+                    <h4 style="color:var(--white);font-weight:700;margin-top:1.5rem;margin-bottom:.5rem">Do I need Redis? Can I skip it?</h4>
+                    <p>Redis is required for the sliding-window rate limiter. If you skip it, the rate-limiting logic will throw errors and the bot will not start correctly. If you are running a very small private server and want to simplify the setup, you could replace the Redis rate limiter with an in-memory Map — but this is not recommended for production because in-memory rate limits reset every time the bot restarts.</p>
+
+                    <h4 style="color:var(--white);font-weight:700;margin-top:1.5rem;margin-bottom:.5rem">How much RAM does the bot need?</h4>
+                    <p>A baseline Node.js process with all services loaded typically uses 100–200 MB of RAM at idle. Under active load (many concurrent AI requests), it may peak at 400–600 MB. A VPS with 1 GB RAM is sufficient for a small-to-medium sized community. For large communities (10,000+ members), 2 GB RAM is recommended.</p>
+
+                    <h4 style="color:var(--white);font-weight:700;margin-top:1.5rem;margin-bottom:.5rem">Can I change the AI system prompt?</h4>
+                    <p>Yes. The system prompt is constructed inside <code>services/AIService.ts</code>. You can edit the prompt template to customize the bot's persona, language style, and knowledge boundaries. Be careful not to remove the triple-quote sandboxing wrappers around user input — those are a core security control.</p>
+
+                    <h4 style="color:var(--white);font-weight:700;margin-top:1.5rem;margin-bottom:.5rem">Can I disable the invite tier system?</h4>
+                    <p>Yes. In <code>services/TierService.ts</code>, change the <code>resolveUser</code> function to always return <code>"premium"</code> (to give all users premium access) or set the invite threshold to <code>0</code>. Alternatively, set the rate-limit quota to a very high number to effectively disable it.</p>
+
+                    <h4 style="color:var(--white);font-weight:700;margin-top:1.5rem;margin-bottom:.5rem">What if I want to deploy the website separately?</h4>
+                    <p>The <code>website/</code> folder contains pure static HTML/CSS. It can be deployed to any static host: Vercel, Netlify, GitHub Pages, or Cloudflare Pages — all for free. Simply point the hosting service at the <code>website/</code> directory. No build step is required.</p>
+
+                    <h3 style="margin-top:2.5rem">Security</h3>
+
+                    <h4 style="color:var(--white);font-weight:700;margin-top:1.5rem;margin-bottom:.5rem">How secure is the BYOK key storage?</h4>
+                    <p>Keys are encrypted with AES-256-CBC using a random IV for each encryption operation. This means even two identical keys produce different ciphertexts, preventing ciphertext comparison attacks. The encryption key itself (<code>ENCRYPTION_KEY</code>) only exists in your <code>.env</code> file and is never stored in the database. The threat model assumes MongoDB access does not constitute a full compromise — an attacker who obtains the database dump but not the <code>ENCRYPTION_KEY</code> cannot recover the API keys.</p>
+
+                    <h4 style="color:var(--white);font-weight:700;margin-top:1.5rem;margin-bottom:.5rem">What happens if my Discord token leaks?</h4>
+                    <p>Immediately go to the Discord Developer Portal, navigate to your application's Bot page, and click <strong>Reset Token</strong>. Update the new token in your <code>.env</code> file and restart the bot. The leaked token is immediately invalidated by Discord upon reset. Also check your repository's git history to ensure the token was never committed — if it was, contact Discord support.</p>
+
+                    <h4 style="color:var(--white);font-weight:700;margin-top:1.5rem;margin-bottom:.5rem">Can users bypass the prompt sandbox?</h4>
+                    <p>The triple-quote sandboxing significantly raises the bar for prompt injection. Attempts to break out (e.g., closing the triple quotes, injection via Unicode lookalikes) are mitigated by the fact that the entire message is treated as literal user context. Suspicious patterns are logged to your security alert channel. No sandbox is 100% perfect against a sufficiently determined attacker, but this implementation follows industry best practices for conversational AI safety.</p>
+                </section>
+
+                <!-- ─── LICENSE ─── -->
+                <section id="license" class="docs-section">
+                    <h2>License</h2>
+                    <p>The Islamic Community Bot is released under the <strong>AGPL-3.0 License</strong>.</p>
+                    <pre><code>GNU AGPLv3 License
+
+Copyright (c) 2026 Sejed TRABELSSI
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.</code></pre>
+                    <p>In plain terms: you are free to use, modify, and distribute this project for any purpose — commercial or non-commercial — as long as you retain the copyright notice and license. If you modify the software and make it available to others over a network, you must also make the source code of your modified version available under the same license.</p>
+
+                    <div style="margin-top:3rem;display:flex;gap:1rem;flex-wrap:wrap">
+                        <a href="https://github.com/SEJED-DEV/digital-akhi-bot" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:.5rem"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                            View on GitHub
+                        </a>
+                        <a href="index.html" class="btn btn-secondary">
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:.5rem"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                            Back to Home
+                        </a>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Developed with care by <strong>Sejed TRABELSSI</strong> &amp; Powered by <a href="https://discord.gg/pun3PXXDuE" target="_blank" rel="noopener noreferrer">Cortex HQ</a></p>
+            <p class="copyright">&copy; 2026 Islamic Community Bot. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ScrollSpy — highlight sidebar link for the visible section -->
+    <script>
+        const sections = document.querySelectorAll('.docs-section');
+        const navLinks = document.querySelectorAll('.docs-nav-link');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    const link = document.querySelector(`.docs-nav-link[href="#${entry.target.id}"]`);
+                    if (link) link.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-15% 0px -70% 0px' });
+
+        sections.forEach(s => observer.observe(s));
+    </script>
+</body>
+</html>
